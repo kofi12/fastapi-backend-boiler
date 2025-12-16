@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
 set -e
-cd /Users/aaronkofihaizel/aaronDev/rcf_consultant
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$SCRIPT_DIR"
+
 docker compose -f docker-compose.dev.yml down --remove-orphans
