@@ -3,14 +3,15 @@ from jose.constants import ALGORITHMS
 from dotenv import load_dotenv
 from datetime import datetime, timedelta, timezone
 import os
+from config import settings
 
 class BearAuthException(Exception):
     pass
 
 load_dotenv()
-JWT_SECRET = os.getenv("JWT_SECRET", '')
-EXPIRY = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "60"))
-ALGO = ALGORITHMS.HS256
+JWT_SECRET = settings.jwt_secret_key
+EXPIRY = settings.access_token_expire_minutes
+ALGO = settings.jwt_algo
 
 def create_token(sub: str) -> str:
     if not JWT_SECRET:
